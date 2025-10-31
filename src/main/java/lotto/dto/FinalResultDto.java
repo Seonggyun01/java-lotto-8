@@ -1,4 +1,9 @@
 package lotto.dto;
 
-public class FinalResultDto {
+import java.util.List;
+
+public record FinalResultDto (
+        List<RankResultDto> ranks,
+        String yieldPercent
+){
 }

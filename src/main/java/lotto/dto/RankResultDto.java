@@ -1,4 +1,8 @@
 package lotto.dto;
 
-public class RankResultDto {
+public record RankResultDto(
+        int matchCount,
+        Long prize,
+        int count
+) {
 }
