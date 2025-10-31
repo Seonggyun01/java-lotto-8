@@ -1,12 +1,12 @@
 package lotto.validator;
 
-import java.util.Map;
 import java.util.regex.Pattern;
+import lotto.domain.exception.MoneyErrorMessage;
 
-public class MoneyValidate {
-    private static final Pattern ALLOWED = Pattern.compile("^[0-9]+$");
+public class MoneyValidator {
+    private static final Pattern DIGITS_ONLY = Pattern.compile("^-?[0-9]+$");
 
-    private MoneyValidate() {
+    private MoneyValidator() {
     }
 
     /**
@@ -14,40 +14,26 @@ public class MoneyValidate {
      *
      * @param rawMoney
      */
-    public static void validate(String rawMoney) {
-        int money;
+    public static int validate(String rawMoney) {
+        if (rawMoney == null || rawMoney.isBlank()) {
+            throw new IllegalArgumentException(MoneyErrorMessage.EMPTY_INPUT.getMessage());
+        }
 
-        // 숫자 앞뒤 공백은 제거하고 사용한다(사용자 친화적). trim()
         String parsedRawMoney = rawMoney.trim();
 
-        // 숫자에 소수가 들어있는 경우 “소수는 입력할수 없습니다.”
         if (parsedRawMoney.contains(".")) {
-            throw new IllegalArgumentException("구입 금액은 1,000원 이상 자연수를 입력해주세요.");
+            throw new IllegalArgumentException(MoneyErrorMessage.INVALID_DECIMAL.getMessage());
         }
 
-        // 숫자가 아닌 문자가 들어올 경우 “구입 금액에 문자는 입력할 수 없습니다.”
-        if (!ALLOWED.matcher(parsedRawMoney).matches()) {
-            throw new IllegalArgumentException("구입 금액에 숫자 외 문자는 입력할 수 없습니다.");
+        if (!DIGITS_ONLY.matcher(parsedRawMoney).matches()) {
+            throw new IllegalArgumentException(MoneyErrorMessage.CONTAINS_CHARACTER.getMessage());
         }
 
-        // int 사용 범위 초과 “너무 큰 금액입니다.”
         try {
-            money = Integer.parseInt(parsedRawMoney);
+            int money = Integer.parseInt(parsedRawMoney);
+            return money;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("너무 큰 금액입니다.");
+            throw new IllegalArgumentException(MoneyErrorMessage.TOO_LARGE.getMessage());
         }
-
-        // 숫자에 0이 들어있는 경우 “1,000원 이상을 입력해주세요.”
-        if (money == 0) {
-            throw new IllegalArgumentException("1,000원 이상 금액을 입력해주세요.");
-        }
-
-        // 숫자에 음수가 들어있는 경우 “구입 금액에 음수는 입력할수 없습니다”
-        if (money < 0) {
-            throw new IllegalArgumentException("구입 금액에 음수는 입력할수 없습니다.");
-        }
-
-        // 1,000으로 나누어 떨어지지 않을 경우 “구입 금액은 1,000원 단위입니다.”
-        if (money / 1000.0)
     }
 }
