@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
+import lotto.domain.exception.MoneyErrorMessage;
 
 public class Lotto {
-    private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int LOTTO_NUMBER_SIZE = 6;
     private static final int MATCH = 1;
     private static final int NOT_MATCH = 0;
     private static final int INITIAL_MATCH_COUNT = 0;
@@ -11,12 +13,14 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateNumber(numbers);
+        sortNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    private static void validateNumber(List<Integer> numbers) {
+        for (int num : numbers) {
+            NumberPolicy.validate(num);
         }
     }
 
@@ -26,13 +30,14 @@ public class Lotto {
      * @param winningNumbers 당첨 번호 목록
      * @return 일치하는 번호의 개수 (0 ~ 6)
      */
-    public int countResult(List<Integer> winningNumbers) {
+    public int compare(WinningNumbers winningNumbers) {
         int matchCount = INITIAL_MATCH_COUNT;
-        for (Integer winningNum : winningNumbers) {
+        for (Integer winningNum : winningNumbers.getNumbers()) {
             matchCount += checkWinningNumber(winningNum);
         }
         return matchCount;
     }
+
 
     private int checkWinningNumber(Integer winningNum) {
         if (numbers.contains(winningNum)) {
@@ -52,5 +57,15 @@ public class Lotto {
             return true;
         }
         return false;
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+    
+    private static void sortNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 }
