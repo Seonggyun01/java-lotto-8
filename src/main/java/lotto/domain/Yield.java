@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Yield {
+    private static final String PERCENT_MULTIPLIER = "100";
+    private static final int DECIMAL_SCALE = 1;
     private Yield() {
     }
 
@@ -19,7 +21,7 @@ public class Yield {
         BigDecimal moneyDecimal = BigDecimal.valueOf(money);
 
         return winningPrizeDecimal
-                .multiply(new BigDecimal("100"))
-                .divide(moneyDecimal, 1, RoundingMode.HALF_UP);
+                .multiply(new BigDecimal(PERCENT_MULTIPLIER))
+                .divide(moneyDecimal, DECIMAL_SCALE, RoundingMode.HALF_UP);
     }
 }
