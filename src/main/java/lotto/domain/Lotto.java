@@ -1,7 +1,10 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import lotto.domain.exception.NumErrorMessage;
 
 public class Lotto {
     private static final int LOTTO_NUMBER_SIZE = 6;
@@ -11,10 +14,18 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        validateNumber(numbers);
-        sortNumbers(numbers);
-        this.numbers = numbers;
+        List<Integer> copy = new ArrayList<>(numbers);
+        validate(copy);
+        validateNumber(copy);
+        validateDuplicate(numbers);
+        sortNumbers(copy);
+        this.numbers = copy;
+    }
+
+    private static void validateDuplicate(List<Integer> numbers) {
+        if (new HashSet<>(numbers).size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(NumErrorMessage.DUPLICATE_NUMBER.getMessage());
+        }
     }
 
     private static void validateNumber(List<Integer> numbers) {
@@ -60,7 +71,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(NumErrorMessage.LOTTO_NUMBER_SIZE.getMessage());
         }
     }
     
