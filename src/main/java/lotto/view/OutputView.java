@@ -65,6 +65,7 @@ public class OutputView {
                         rankResultDto.prize(),
                         rankResultDto.count()
                 ));
+                continue;
             }
             System.out.println(String.format(DEFAULT_RESULT_FORMAT,
                     rankResultDto.matchCount(),
