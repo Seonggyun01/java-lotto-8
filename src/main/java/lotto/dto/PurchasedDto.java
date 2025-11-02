@@ -2,7 +2,8 @@ package lotto.dto;
 
 import java.util.List;
 
-public record PurchasedLottosDto(
-        List<List<Integer>> lottos
+public record PurchasedDto(
+        List<List<Integer>> lottos,
+        int ccount
 ) {
 }
