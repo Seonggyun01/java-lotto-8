@@ -15,10 +15,9 @@ public class Parser {
      * @param rawWinningNumbers String
      * @return List<Integer>
      */
-    public static List<Integer> parse(String rawWinningNumbers) {
-        List<Integer> parsedWinningNumbers = Stream.of(rawWinningNumbers.split(",", -1))
+    public static List<String> parse(String rawWinningNumbers) {
+        List<String> parsedWinningNumbers = Stream.of(rawWinningNumbers.split(",", -1))
                 .map(String::trim)
-                .map(Integer::parseInt)
                 .toList();
 
         return copyOf(parsedWinningNumbers);
