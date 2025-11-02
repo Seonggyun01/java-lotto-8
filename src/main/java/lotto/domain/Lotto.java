@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.exception.MoneyErrorMessage;
 
 public class Lotto {
     private static final int LOTTO_NUMBER_SIZE = 6;
@@ -67,5 +66,9 @@ public class Lotto {
     
     private static void sortNumbers(List<Integer> numbers) {
         Collections.sort(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
