@@ -31,4 +31,8 @@ public class Money {
     public int buyLotto() {
         return money / 1000;
     }
+
+    public int getMoney() {
+        return money;
+    }
 }
