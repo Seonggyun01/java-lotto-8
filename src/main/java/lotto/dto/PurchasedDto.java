@@ -4,6 +4,6 @@ import java.util.List;
 
 public record PurchasedDto(
         List<List<Integer>> lottos,
-        int ccount
+        int count
 ) {
 }
