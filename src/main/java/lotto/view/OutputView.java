@@ -78,4 +78,12 @@ public class OutputView {
     public static void printYieldFormat(String yield) {
         System.out.println(String.format(YIELD_FORMAT, yield));
     }
+
+    public static void printErrorMessage(String message){
+        System.out.println(message);
+    }
+
+    public static void printLineBreak(){
+        System.out.println();
+    }
 }
