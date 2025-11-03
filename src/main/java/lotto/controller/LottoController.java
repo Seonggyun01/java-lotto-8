@@ -8,7 +8,6 @@ import lotto.service.LottoCoordinator.PurchaseResult;
 import lotto.service.LottoNumberGenerator;
 import lotto.service.LottoService;
 import lotto.service.NumberParserService;
-import lotto.service.PurchaseService;
 import lotto.service.ResultService;
 import lotto.service.WinningNumbersService;
 import lotto.view.InputView;
@@ -19,7 +18,6 @@ public class LottoController {
 
     public LottoController() {
         this.lottoCoordinator = new LottoCoordinator(
-                new PurchaseService(),
                 new LottoService(new LottoNumberGenerator()),
                 new WinningNumbersService(),
                 new ResultService(),

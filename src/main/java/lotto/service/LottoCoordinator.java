@@ -17,16 +17,14 @@ import lotto.service.ResultService.Summary;
 import lotto.validator.MoneyValidator;
 
 public class LottoCoordinator {
-    private final PurchaseService purchaseService;
     private final LottoService lottoService;
     private final WinningNumbersService winningNumbersService;
     private final ResultService resultService;
     private final NumberParserService numberParserService;
 
-    public LottoCoordinator(PurchaseService purchaseService, LottoService lottoService,
+    public LottoCoordinator(LottoService lottoService,
                             WinningNumbersService winningNumbersService, ResultService resultService,
                             NumberParserService numberParserService) {
-        this.purchaseService = purchaseService;
         this.lottoService = lottoService;
         this.winningNumbersService = winningNumbersService;
         this.resultService = resultService;
