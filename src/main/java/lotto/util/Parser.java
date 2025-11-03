@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Parser {
+    private static final String DELIMITER = ",";
     private Parser() {
     }
 
@@ -16,7 +17,7 @@ public class Parser {
      * @return List<Integer>
      */
     public static List<String> parse(String rawWinningNumbers) {
-        List<String> parsedWinningNumbers = Stream.of(rawWinningNumbers.split(",", -1))
+        List<String> parsedWinningNumbers = Stream.of(rawWinningNumbers.split(DELIMITER, -1))
                 .map(String::trim)
                 .toList();
 

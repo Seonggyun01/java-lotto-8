@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 import lotto.domain.exception.NumErrorMessage;
 
 public class NumValidate {
+    private static final String DECIMAL_POINT = ".";
     private static final Pattern DIGIT_ONLY = Pattern.compile("^-?[0-9]+$");
 
     private NumValidate() {
@@ -21,7 +22,7 @@ public class NumValidate {
 
         String parsedRawNumber = rawNumber.trim();
 
-        if (rawNumber.contains(".")) {
+        if (rawNumber.contains(DECIMAL_POINT)) {
             throw new IllegalArgumentException(NumErrorMessage.INVALID_DECIMAL.getMessage());
         }
 

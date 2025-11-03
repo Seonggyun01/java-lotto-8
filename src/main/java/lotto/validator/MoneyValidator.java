@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 import lotto.domain.exception.MoneyErrorMessage;
 
 public class MoneyValidator {
+    private static final String DECIMAL_POINT = ".";
     private static final Pattern DIGITS_ONLY = Pattern.compile("^-?[0-9]+$");
 
     private MoneyValidator() {
@@ -21,7 +22,7 @@ public class MoneyValidator {
 
         String parsedRawMoney = rawMoney.trim();
 
-        if (parsedRawMoney.contains(".")) {
+        if (parsedRawMoney.contains(DECIMAL_POINT)) {
             throw new IllegalArgumentException(MoneyErrorMessage.INVALID_DECIMAL.getMessage());
         }
 

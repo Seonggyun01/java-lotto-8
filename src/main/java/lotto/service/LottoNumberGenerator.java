@@ -13,6 +13,6 @@ public class LottoNumberGenerator {
      * @return
      */
     public List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START_RANGE, LOTTO_NUMBER_LAST_RANGE, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START_RANGE, LOTTO_NUMBER_LAST_RANGE, LOTTO_SIZE);
     }
 }

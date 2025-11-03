@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.WinningNumbers;
+import lotto.domain.exception.NumErrorMessage;
 
 public class WinningNumbersService {
     /**
@@ -20,7 +21,7 @@ public class WinningNumbersService {
      */
     public void ensureBonusNotDuplicated(WinningNumbers winning, int bonusNumber) {
         if (winning.getNumbers().contains(bonusNumber)) {   // winning.contains()메서드 추가?
-            throw new IllegalStateException("보너스 번호가 당첨 6개와 중복될 수 없습니다.");
+            throw new IllegalStateException(NumErrorMessage.BONUS_NUMBER_DUPLICATION_ERROR_MESSAGE.getMessage());
         }
     }
 }

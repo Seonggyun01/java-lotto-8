@@ -17,6 +17,8 @@ import lotto.service.ResultService.Summary;
 import lotto.validator.MoneyValidator;
 
 public class LottoCoordinator {
+    private final static String PERCENT_SYMBOL = "%";
+
     private final LottoService lottoService;
     private final WinningNumbersService winningNumbersService;
     private final ResultService resultService;
@@ -91,7 +93,7 @@ public class LottoCoordinator {
         addRankDto(ranks, resultRecordMap, Rank.SECOND);
         addRankDto(ranks, resultRecordMap, Rank.FIRST);
 
-        String yieldText = yieldPercent.toPlainString() + "%";
+        String yieldText = yieldPercent.toPlainString() + PERCENT_SYMBOL;
 
         return new FinalResultDto(ranks, yieldText);
     }

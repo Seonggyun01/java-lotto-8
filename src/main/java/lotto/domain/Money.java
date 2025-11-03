@@ -4,6 +4,7 @@ import lotto.domain.exception.MoneyErrorMessage;
 
 public class Money {
     private static final int MIN_MONEY = 1000;
+    private static final int NON_NEGATIVE_MONEY_BOUND = 0;
     private final int money;
 
     public Money(int money) {
@@ -13,7 +14,7 @@ public class Money {
 
     public void validate(int money){
         // 숫자에 음수가 들어있는 경우 “구입 금액에 음수는 입력할수 없습니다”
-        if (money < 0) {
+        if (money < NON_NEGATIVE_MONEY_BOUND) {
             throw new IllegalStateException(MoneyErrorMessage.NEGATIVE_INPUT.getMessage());
         }
 
@@ -29,7 +30,7 @@ public class Money {
     }
 
     public int buyLotto() {
-        return money / 1000;
+        return money / MIN_MONEY;
     }
 
     public int getMoney() {
