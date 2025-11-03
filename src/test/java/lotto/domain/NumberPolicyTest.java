@@ -10,7 +10,7 @@ class NumberPolicyTest {
 
     @DisplayName("0을 입력하면 예외가 발생한다.")
     @Test
-    void zero_input_throws_exception() {
+    void 숫자_0_입력_예외_테스트() {
         assertThatThrownBy(() -> NumberPolicy.validate(0))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage(NumErrorMessage.ZERO_NOT_ALLOWED.getMessage());
@@ -18,7 +18,7 @@ class NumberPolicyTest {
 
     @DisplayName("음수를 입력하면 예외가 발생한다.")
     @Test
-    void negative_number_throws_exception() {
+    void 음수_입력_예외_테스트() {
         assertThatThrownBy(() -> NumberPolicy.validate(-5))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage(NumErrorMessage.OUT_OF_RANGE.getMessage());
@@ -26,7 +26,7 @@ class NumberPolicyTest {
 
     @DisplayName("45 초과 입력 시 예외가 발생한다.")
     @Test
-    void above_max_range_throws_exception() {
+    void 최대범위_초과_예외_테스트() {
         assertThatThrownBy(() -> NumberPolicy.validate(50))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage(NumErrorMessage.OUT_OF_RANGE.getMessage());
@@ -34,7 +34,7 @@ class NumberPolicyTest {
 
     @DisplayName("1 미만 입력 시 예외가 발생한다.")
     @Test
-    void below_min_range_throws_exception() {
+    void 최소범위_미만_예외_테스트() {
         assertThatThrownBy(() -> NumberPolicy.validate(0))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage(NumErrorMessage.ZERO_NOT_ALLOWED.getMessage());
@@ -46,7 +46,7 @@ class NumberPolicyTest {
 
     @DisplayName("1~45 범위의 숫자는 예외가 발생하지 않는다.")
     @Test
-    void valid_range_passes() {
+    void 숫자_범위_검증_통과_테스트() {
         assertThatCode(() -> NumberPolicy.validate(1))
                 .doesNotThrowAnyException();
 
